@@ -1,0 +1,23 @@
+#!/bin/bash
+# Crude check for LTS status of the current Debian release
+# Checks if the Debian Wiki contains a LTS page for this release
+#
+# Useful if you wish to stay on a Debian release for a while longer
+# (i.e. some third-parties may not support the new Debian release yet)
+DEB_CODENAME=$(cat /etc/os-release | grep VERSION_CODENAME | cut -d= -f2)
+TIMEOUT=1
+
+LTS_PAGE_HTTPCODE=$(curl -XGET "https://wiki.debian.org/LTS/${DEB_CODENAME}" -s -w %{http_code} --connect-timeout ${TIMEOUT} >
+if [ $? -ne 0 ]; then
+    echo -e "_ \e[1;107m\e[1;30mTIMEOUT\e[0;m - LTS Check exceeded ${TIMEOUT}s"
+    exit 1
+fi
+
+if [ "${LTS_PAGE_HTTPCODE}" -eq 200 ]; then
+    echo -e "\e[1;36mGOOD\e[0;m" # Debian Security Team
+else
+    echo -ne "! \e[0;43m"
+    echo -e "\e[1;33mCAUTION\e[0;m - \e[0;95mUpgrade to the next Debian release\e[0;m"
+    echo -e "\e[2;0m        # The Debian Security Team is no longer supporting this release"
+    echo -e        "        # The LTS Team, while great, may be limited by the amount of support they receive \e[0;m"
+fi
