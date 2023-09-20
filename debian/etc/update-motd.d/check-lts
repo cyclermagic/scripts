@@ -5,7 +5,7 @@
 # Useful if you wish to stay on a Debian release for a while longer
 # (i.e. some third-parties may not support the new Debian release yet)
 DEB_CODENAME=$(cat /etc/os-release | grep VERSION_CODENAME | cut -d= -f2)
-TIMEOUT=1
+TIMEOUT=2
 
 LTS_PAGE_HTTPCODE=$(curl -XGET "https://wiki.debian.org/LTS/${DEB_CODENAME}" -s -w %{http_code} --connect-timeout ${TIMEOUT} --max-time ${TIMEOUT} -o /dev/null 2>&1)
 if [ $? -ne 0 ]; then
