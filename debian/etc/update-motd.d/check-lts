@@ -7,13 +7,13 @@
 DEB_CODENAME=$(cat /etc/os-release | grep VERSION_CODENAME | cut -d= -f2)
 TIMEOUT=1
 
-LTS_PAGE_HTTPCODE=$(curl -XGET "https://wiki.debian.org/LTS/${DEB_CODENAME}" -s -w %{http_code} --connect-timeout ${TIMEOUT} >
+LTS_PAGE_HTTPCODE=$(curl -XGET "https://wiki.debian.org/LTS/${DEB_CODENAME}" -s -w %{http_code} --connect-timeout ${TIMEOUT} --max-time ${TIMEOUT} -o /dev/null 2>&1)
 if [ $? -ne 0 ]; then
     echo -e "_ \e[1;107m\e[1;30mTIMEOUT\e[0;m - LTS Check exceeded ${TIMEOUT}s"
     exit 1
 fi
 
-if [ "${LTS_PAGE_HTTPCODE}" -eq 200 ]; then
+if [ "${LTS_PAGE_HTTPCODE}" -eq 404 ]; then
     echo -e "\e[1;36mGOOD\e[0;m" # Debian Security Team
 else
     echo -ne "! \e[0;43m"
