@@ -7,3 +7,4 @@ if [ ! -f "${BINARY_FILE}" ]; then
 fi
 
 sudo setcap CAP_NET_BIND_SERVICE=+eip ${BINARY_FILE}
+echo "Please restart any services using ${BINARY_FILE}"
