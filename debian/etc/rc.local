@@ -1,0 +1,5 @@
+## 2023/10/23 Resolves some buffer overflow issues
+# /usr/bin/ip link set !!!replace_this_with_interface!!! txqueuelen 2000
+
+# May be required for virtual interfaces (bridges etc):
+# /usr/bin/ifconfig !!!replace_this_with_interface!!! txqueuelen 2000
