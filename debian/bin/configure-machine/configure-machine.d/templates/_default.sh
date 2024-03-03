@@ -41,7 +41,6 @@ do
    echo "server $ntpServer iburst" >> ${NTP_SRC_FILE}
 done
 
-/usr/bin/echo -e "server 10.2.0.6 iburst\nserver 10.2.0.8 iburst" > /etc/chrony/sources.d/${NTP_SOURCE_NAME}.sources
 service chrony force-reload
 
 # Enable auto-upgrades
