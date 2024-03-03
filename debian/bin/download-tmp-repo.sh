@@ -8,4 +8,4 @@ UNZIPPED_DIR_NAME="scripts-main"
 mv ${UNZIPPED_DIR_NAME}/* ${REPO_TMP_DIR}/
 cd ${REPO_TMP_DIR}/${UNZIPPED_DIR_NAME}
 
-printf "${REPO_TMP_DIR}"
+echo ${REPO_TMP_DIR}
