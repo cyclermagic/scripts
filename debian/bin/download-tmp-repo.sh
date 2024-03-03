@@ -5,6 +5,7 @@ UNZIPPED_DIR_NAME="scripts-main"
 /usr/bin/wget https://github.com/cyclermagic/scripts/archive/refs/heads/main.zip
 /usr/bin/unzip main.zip
 
+mkdir "${REPO_TMP_DIR}
 mv ${UNZIPPED_DIR_NAME}/* ${REPO_TMP_DIR}/
 cd ${REPO_TMP_DIR}/${UNZIPPED_DIR_NAME}
 
