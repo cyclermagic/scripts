@@ -1,3 +1,4 @@
+#!/bin/bash
 LOCALMAIL_USERNAME=$1
 if [ -z "${LOCALMAIL_USERNAME}" ]; then
     echo "Exiting: Empty param 1 (LOCALMAIL_USERNAME)" 

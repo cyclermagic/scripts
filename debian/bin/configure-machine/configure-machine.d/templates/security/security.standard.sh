@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "$ $(basename $(readlink -f ${BASH_SOURCE[0]}))..."
 
 apt-get -y install debian-security-support needrestart debsecan debsums fail2ban libpam-tmpdir
